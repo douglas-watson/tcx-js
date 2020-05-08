@@ -7,13 +7,13 @@ echo 'removing output files...'
 rm dist/*.*
 
 echo 'compiling the merge program...'
-tsc --build tsconfig-merge.json
+./node_modules/.bin/tsc --build tsconfig-merge.json
 
 echo 'executing the merge program...'
 node dist/merge.js src/tcx.ts
 
 echo 'compiling after merge...'
-tsc
+./node_modules/.bin/tsc
 
 echo 'src dir:'
 ls -al src/
