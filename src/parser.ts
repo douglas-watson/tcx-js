@@ -36,10 +36,12 @@ export class Parser {
     public activity : Activity = new Activity();
     public tcx_filename: string = '';
 
-    public constructor(infile: string) {
+    public constructor(infile: string, tcx_xml_str?: string) {
         this.tcx_filename = infile;
         this.activity.tcx_filename = infile;
-        let tcx_xml_str = fs.readFileSync(infile).toString();
+        if ( !tcx_xml_str ) {
+            tcx_xml_str = fs.readFileSync(infile).toString();
+        }
         let root_obj : JsonObject = <JsonObject> this.convertXmlToJson(tcx_xml_str);
         let tcdb : JsonObject = <JsonObject> root_obj["TrainingCenterDatabase"];
         let tcdb_file = this.tcx_filename + ".json";

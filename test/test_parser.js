@@ -1,6 +1,7 @@
 // Unit tests for class Parser
 // Chris Joakim, 2019/07/29
 
+const fs = require('fs');
 const assert = require('assert');
 const chai   = require('chai');
 const chaiAlmost = require('chai-almost');
@@ -296,6 +297,24 @@ describe('Parser', function() {
       expect(hightestWatts).to.be.almost(957.0);
       expect(lastWatts).to.be.almost(16.0);
     });
+
+    it('It should return the correct values when given text contents of alex_bike_outside.tcx', function() {
+      var infile = 'data/alex_bike_outside_pretty.tcx';
+      let tcx_xml_data = fs.readFileSync(infile, 'utf8');
+
+      var parser = new Parser('fakename.tcx', tcx_xml_data);
+
+      activity = parser.activity;
+      author = activity.author;
+      creator = activity.creator;
+      trackpoints = activity.trackpoints;
+
+      expect(activity.sport).to.equal('Biking');
+      expect(activity.activityId).to.equal('2018-07-29T07:34:11Z');
+
+      expect(author.name).to.equal('FitnessSyncer.com');
+    });
+    
 
   });
 
