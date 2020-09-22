@@ -9,7 +9,8 @@
     "dist/tcx*"
   ],
   "scripts": {
-    "test": "npx mocha --reporter mocha-multi-reporters --reporter-options configFile=mocha.opts"
+    "test": "npx mocha --reporter mocha-multi-reporters --reporter-options configFile=mocha.opts",
+    "prepare": "./build.sh"
   },
   "author": "Chris Joakim",
   "license": "MIT",
